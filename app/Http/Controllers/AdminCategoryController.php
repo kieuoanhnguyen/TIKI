@@ -17,8 +17,8 @@ class AdminCategoryController extends Controller
     public function index()
     {
         $categories = Category::paginate(20);
-         
-        return view('Admin.Category.index',compact('categories'));
+       
+        return view('admin.categories.index',compact('categories'));
     }
 
     /**
@@ -28,7 +28,7 @@ class AdminCategoryController extends Controller
      */
     public function create()
     {
-        return view('Admin.Category.edit',$this->createOrEdit(new Category));
+        return view('admin.categories.edit',$this->createOrEdit(new Category));
     }
 
     /**
@@ -41,7 +41,7 @@ class AdminCategoryController extends Controller
     {
         $this->storeOrUpdate($request,new Category);
 
-        return redirect()->route('categories.index');
+        //return redirect()->route('categories.index');
     }
 
     /**
@@ -63,7 +63,7 @@ class AdminCategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('Admin.Category.edit',$this->createOrEdit($category));
+        return view('admin.categories.edit',$this->createOrEdit($category));
     }
 
     /**
@@ -107,7 +107,7 @@ class AdminCategoryController extends Controller
     {
         $category->fill($request->only($category->getFillable()));
 
-        $category->parent_id = $request->parent_id;
+        $category->parent_id = $request->parent_category;
 
         $category->save();
     }

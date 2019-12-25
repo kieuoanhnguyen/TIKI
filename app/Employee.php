@@ -11,7 +11,7 @@ class Employee extends Model
     protected $table = 'employees';
 
     protected $fillable = [
-       'name' , 'possition' , 'telephone'
+       'name' , 'position' , 'telephone'
     ];
     
     public function warehouse()

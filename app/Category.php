@@ -3,10 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Category;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
+use App\Product;
 
 class Category extends Model
 {
+    use HasSlug;
+
     protected $table = 'categories';
 
     protected $fillable = [
@@ -32,4 +36,15 @@ class Category extends Model
         return $this->hasMany($this,'parent_id','id');
     }
 
+    public function getSlugOptions():SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

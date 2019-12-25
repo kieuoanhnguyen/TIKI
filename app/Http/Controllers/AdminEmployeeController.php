@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Employee;
+use App\WareHouse;
 
 class AdminEmployeeController extends Controller
 {
@@ -16,7 +17,7 @@ class AdminEmployeeController extends Controller
     {
         $employees = Employee::paginate(20);
 
-        return view('Admin.Employee.index',compact('employees'));
+        return view('admin.employees.index',compact('employees'));
     }
 
     /**
@@ -26,7 +27,7 @@ class AdminEmployeeController extends Controller
      */
     public function create()
     {
-        return view('Admin.Employee.edit',$this->createOrEdit(new Employee));
+        return view('admin.employees.edit',$this->createOrEdit(new Employee));
     }
 
     /**
@@ -37,7 +38,7 @@ class AdminEmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        $this->storeOrUpdate($request,new WareHouse);
+        $this->storeOrUpdate($request,new Employee);
 
         return redirect()->route('employees.index');
     }
@@ -61,7 +62,7 @@ class AdminEmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        return view('Admin.Employee.edit',$this->createOrEdit($employee));
+        return view('admin.employees.edit',$this->createOrEdit($employee));
     }
 
     /**
@@ -87,14 +88,18 @@ class AdminEmployeeController extends Controller
     public function destroy(Employee $employee)
     {
         Employee::destroy($employee);
+
+        return redirect()->route('employees.index');
     }
 
     public function createOrEdit(Employee $employee)
     {
-        $url = $warehouse->id ? route('employees.update',['employee'=>$employee])
+        $url = $employee->id ? route('employees.update',['employee'=>$employee])
         :route('employees.store');
 
-        return compact('employee','url');
+        $warehouses = WareHouse::all();
+
+        return compact('employee','url','warehouses');
     }
 
     public function storeOrUpdate(Request $request, Employee $employee)

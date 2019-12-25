@@ -13,6 +13,15 @@ use App\Discount;
 class Order extends Model
 {
     protected $table = 'orders';
+
+    protected $fillable =[
+        'user_id','fullname','position','telephone',
+        'shipper_id', 'employee_id', 'total_money' , 'discount_id', 'ship_date' ,'due_date'
+    ];
+
+    protected $hidden = [
+        'created_at', 'updated_at','deleted_at'
+    ];
     
     public function employee()
     {

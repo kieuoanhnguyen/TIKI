@@ -13,10 +13,9 @@ class AdminSellerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    { 
         $sellers = Seller::paginate(20);
-        
-        return view('Admin.Seller.index',compact('sellers'));
+        return view('admin.sellers.index',compact('sellers'));
     }
 
     /**

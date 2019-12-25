@@ -1,4 +1,15 @@
 <?php return array (
+  'darryldecode/cart' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Darryldecode\\Cart\\CartServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Cart' => 'Darryldecode\\Cart\\Facades\\CartFacade',
+    ),
+  ),
   'facade/ignition' => 
   array (
     'providers' => 
@@ -22,6 +33,13 @@
     'providers' => 
     array (
       0 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    ),
+  ),
+  'laravel/ui' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Ui\\UiServiceProvider',
     ),
   ),
   'nesbot/carbon' => 

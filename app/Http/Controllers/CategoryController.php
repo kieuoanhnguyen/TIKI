@@ -12,18 +12,22 @@ class CategoryController extends Controller
 {
     public function viewCategory(Category $category)
     {
-       $products = $category->products()->paginate(20)->chunk(4);
+       $png_products = $category->products()->paginate(20);
+       $products = $png_products->chunk(4);
 
        $products->toArray();
-        
-       return view('viewCategory',compact('category','products'));
+    
+       return view('home.categories',compact('category','products','png_products'));
     }
 
     public function viewProduct(Category $category,Product $product)
     {
-       $seller = $product->seller->get();
+       //$seller = $product->seller->get();
+       $seller = "Marry";
 
-       return view('viewProduct',compact('category','seller','product'));
+       $related_products = $product->relationProducts();
+
+       return view('home.products',compact('seller','category','product','related_products'));
     }
 
 }

@@ -16,7 +16,7 @@ class AdminWareHouseController extends Controller
     {
         $warehouses = WareHouse::paginate(20);
 
-        return view('Admin.WareHouse.index',compact('warehouses'));
+        return view('admin.warehouses.index',compact('warehouses'));
     }
 
     /**
@@ -26,7 +26,7 @@ class AdminWareHouseController extends Controller
      */
     public function create()
     {
-        return view('Admin.WareHouse.edit',$this->createOrEdit(new WareHouse));
+        return view('admin.warehouses.edit',$this->createOrEdit(new WareHouse));
     }
 
     /**
@@ -50,7 +50,7 @@ class AdminWareHouseController extends Controller
      */
     public function show(WareHouse $warehouse)
     {
-        return view('Admin.WareHouse.detail',compact('warehouse'));
+        return view('admin.warehouses.detail',compact('warehouse'));
     }
 
     /**
@@ -61,7 +61,7 @@ class AdminWareHouseController extends Controller
      */
     public function edit(WareHouse $warehouse)
     {
-        return view('Admin.WareHouse.edit',$this->createOrEdit($warehouse));
+        return view('admin.warehouses.edit',$this->createOrEdit($warehouse));
     }
 
     /**
